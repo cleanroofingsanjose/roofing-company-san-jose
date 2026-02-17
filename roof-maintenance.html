@@ -1,0 +1,752 @@
+<style>
+
+/* --- Variables & Reset --- */
+:root {
+    --primary: #0c2d48; /* Deep Navy */
+    --accent: #bfa15f;  /* Gold/Bronze */
+    --text-dark: #333333;
+    --text-light: #f5f5f5;
+    --bg-light: #f9f9f9;
+    --bg-dark: #1a1a1a;
+    --max-width: 1400px;
+    --padding-std: 50px;
+    --border-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Container Logic --- */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--padding-std);
+    width: 100%;
+}
+
+.content-section { width: 100%; }
+.bg-light { background-color: var(--bg-light); }
+.bg-dark { background-color: var(--primary); color: #fff; }
+.text-white { color: #fff; }
+.text-center { text-align: center; }
+.mt-20 { margin-top: 20px; }
+.mt-40 { margin-top: 40px; }
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.section-title-left {
+    text-align: left;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1rem;
+}
+
+.intro-block {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.1rem;
+}
+.intro-block p { margin-bottom: 20px; }
+
+/* --- Header & Navigation --- */
+.site-header {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 1px;
+}
+
+.main-nav { display: flex; align-items: center; gap: 30px; }
+.nav-link { color: var(--text-dark); font-weight: 600; text-decoration: none; transition: 0.3s; }
+.nav-link:hover, .nav-link.active { color: var(--accent); }
+.btn-nav { background: var(--accent); color: #fff !important; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: 600; }
+
+/* Phone Number Style */
+.nav-phone {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-right: 5px;
+    text-decoration: none;
+}
+.nav-phone:hover { color: var(--accent); }
+
+/* --- Dropdown Styles --- */
+.dropdown { position: relative; display: inline-block; }
+.dropbtn {
+    background-color: transparent;
+    color: var(--text-dark);
+    padding: 10px 0;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    transition: color 0.3s;
+}
+.dropdown:hover .dropbtn { color: var(--accent); }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-top: 3px solid var(--accent);
+    border-radius: 0 0 4px 4px;
+    top: 100%;
+    left: 0;
+}
+.dropdown-content a {
+    color: var(--text-dark);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.dropdown-content a:hover {
+    background-color: #f9f9f9;
+    color: var(--accent);
+    padding-left: 20px;
+}
+.dropdown:hover .dropdown-content { display: block; }
+.arrow { font-size: 10px; margin-left: 5px; vertical-align: middle; }
+
+/* --- Mobile Menu Icon --- */
+.menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.bar { width: 25px; height: 3px; background-color: var(--primary); transition: 0.3s; }
+
+/* --- Hero Section (Maintenance Specific) --- */
+.hero-maint {
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1400');
+    background-size: cover;
+    background-position: center;
+    padding: 120px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(12, 45, 72, 0.85);
+}
+
+.hero-content { position: relative; z-index: 2; }
+.hero-maint h1 { color: #fff; font-size: 3rem; margin-bottom: 10px; }
+.hero-sub { font-size: 1.4rem; font-weight: 400; color: #fff; }
+
+/* --- Lists & Icons --- */
+.check-list li, .check-list-grid li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+.check-list li::before, .check-list-grid li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.bullet-list-center {
+    list-style: disc inside;
+    margin: 20px 0;
+    display: inline-block;
+    text-align: left;
+}
+
+/* --- Cards & Grid Layouts --- */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.card-simple {
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.rounded-img {
+    border-radius: var(--border-radius);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 350px;
+}
+.shadow { box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+
+/* --- Page Specific Components (Maintenance) --- */
+
+/* -- Maintenance Features (Grid) -- */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+.feature-item {
+    background: #fff; padding: 20px; border-radius: 6px; text-align: center; font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 4px solid var(--accent);
+}
+
+/* -- Zig Zag Layout -- */
+.zigzag-row { display: flex; align-items: center; gap: 60px; }
+.zigzag-text { flex: 1; }
+.zigzag-img { flex: 1; }
+.reverse-layout { flex-direction: row-reverse; }
+
+/* -- Badges -- */
+.badges-container {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px;
+}
+.roof-badge {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);
+    padding: 15px 30px; border-radius: 50px; color: #fff; font-weight: 600; transition: background 0.3s;
+}
+.roof-badge:hover { background: var(--accent); border-color: var(--accent); }
+
+/* -- Vertical Process List -- */
+.process-list {
+    max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px;
+}
+.process-item { display: flex; gap: 25px; align-items: flex-start; }
+.proc-number {
+    background: var(--primary); color: #fff; min-width: 50px; height: 50px;
+    border-radius: 50%; text-align: center; line-height: 50px; font-weight: bold; font-size: 1.2rem; flex-shrink: 0;
+}
+.proc-content h4 { margin-bottom: 5px; color: var(--primary); }
+
+/* -- Info Box -- */
+.info-box-border {
+    border: 2px dashed var(--primary); padding: 40px; text-align: center;
+    border-radius: 10px; background: #fff; max-width: 900px; margin: 0 auto;
+}
+
+/* --- Map Section --- */
+.map-responsive {
+    overflow: hidden;
+    position: relative;
+    height: 450px;
+    width: 100%;
+}
+
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border: 0;
+}
+
+/* --- Footer --- */
+.site-footer {
+    background-color:black;
+    color: #fff;
+    padding-bottom: 20px;
+}
+
+.cta-box {
+    background-color: var(--primary);
+    padding: 60px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.cta-box h2 { color: #fff; }
+
+.cta-action {
+    margin-top: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-cta {
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+.btn-cta:hover { background-color: #a3884d; }
+
+/* Footer Details Grid */
+.footer-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 Columns */
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-align: left;
+    margin-top: 50px;
+}
+
+.footer-col h4 {
+    color: var(--accent);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.contact-info p {
+    color: #ccc;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.contact-info strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Footer Links Style */
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { color: #ccc; text-decoration: none; transition: all 0.3s ease; font-size: 1rem; }
+.footer-links a:hover { color: var(--accent); padding-left: 5px; }
+
+/* Hours Table */
+.hours-table { width: 100%; max-width: 400px; border-collapse: collapse; }
+.hours-table tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+.hours-table td { padding: 8px 0; color: #ccc; font-size: 0.95rem; }
+.hours-table .day { font-weight: 600; color: #fff; width: 120px; }
+
+.footer-copy { text-align: center; color: #888; font-size: 0.9rem; }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .header-container { padding: 0 20px; }
+    .menu-toggle { display: flex; }
+
+    /* Mobile Nav Logic */
+    .main-nav { display: none; width: 100%; position: absolute; top: 80px; left: 0; background-color: white; flex-direction: column; align-items: flex-start; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 0; }
+    .main-nav.active { display: flex; }
+    .nav-link, .dropbtn { width: 100%; padding: 15px 20px; border-bottom: 1px solid #eee; margin: 0; text-align: left;}
+    
+    /* Mobile Phone Fix */
+    .nav-phone {
+        margin: 0;
+        color: var(--text-dark);
+        font-weight: 600;
+        padding-left: 20px;
+        width: 100%;
+        display: block;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Mobile Dropdown */
+    .dropdown { width: 100%; display: block; }
+    .dropdown-content { position: relative; box-shadow: none; border-top: none; background-color: #f9f9f9; display: none; width: 100%; top: 0; }
+    .dropdown.open .dropdown-content { display: block; }
+    .dropdown-content a { padding-left: 40px; }
+    .dropdown:hover .dropdown-content { display: none; } /* Disable hover on mobile */
+    .dropdown.open:hover .dropdown-content { display: block; }
+
+    /* Content Adjustments */
+    .zigzag-row, .reverse-layout { flex-direction: column; gap: 40px; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .hero-maint h1 { font-size: 2.2rem; }
+    .zigzag-img img { max-height: 400px; width: 100%; object-fit: cover; }
+    
+    /* Footer Mobile */
+    .footer-details { grid-template-columns: 1fr; gap: 30px; }
+}
+
+@media (max-width: 768px) {
+    .container { padding: 50px 20px; }
+    .section-title, .section-title-left { font-size: 1.8rem; text-align: center; }
+}
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roof Maintenance San Jose | Clean Roofing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                 <a href="index.html" style="color: inherit; text-decoration: none;">CLEAN ROOFING</a>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                
+                <div class="dropdown">
+                    <button class="dropbtn">Services <span class="arrow">▼</span></button>
+                    <div class="dropdown-content">
+                        <a href="roof-repair.html">Roof Repair</a>
+                        <a href="roof-installation.html">Roof Installation</a>
+                        <a href="#services">Roof Maintenance</a>
+                        <a href="tesla-solar-roof.html">Solar Roofing</a>
+                    </div>
+                </div>
+
+                <a href="#importance" class="nav-link">Importance</a>
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#why-us" class="nav-link">Why Us</a>
+
+                <a href="tel:8883362115" class="nav-phone">888-336-2115</a>
+                
+                <a href="https://cleanroofing.com/contact-us/" class="btn-nav">Get Quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero hero-maint">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Roof Maintenance in San Jose, CA</h1>
+            <p class="hero-sub">Professional Roof Maintenance Services by Clean Roofing</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="intro-block">
+                <p>Your roof protects your home or business every single day. Without regular care, small issues can turn into expensive repairs or even full replacements. At Clean Roofing, we provide reliable and affordable <a href="https://cleanroofing.com/services/roof-maintenance/" style="font-weight: bold; color: inherit;color: blue;">Roof Maintenance in San Jose</a> to help extend the life of your roofing system and prevent unexpected damage.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="importance" class="content-section bg-light">
+        <div class="container">
+            <h2 class="section-title">Why Roof Maintenance Is Important</h2>
+            <p class="section-subtitle">Many property owners wait until they see leaks before calling a roofing contractor. By then, the damage may already be significant. Regular maintenance helps:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-item">Prevent costly repairs</div>
+                <div class="feature-item">Extend roof lifespan</div>
+                <div class="feature-item">Improve energy efficiency</div>
+                <div class="feature-item">Detect leaks early</div>
+                <div class="feature-item">Protect structural integrity</div>
+                <div class="feature-item">Maintain property value</div>
+            </div>
+            
+            <p class="text-center mt-20">As an experienced roofing contractor San Jose property owners rely on, Clean Roofing helps you stay ahead of roofing problems.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="zigzag-row">
+                <div class="zigzag-text">
+                    <h2 class="section-title-left">Residential Roof Maintenance Services</h2>
+                    <p>Your home deserves consistent protection. As a professional residential roofing contractor, we provide comprehensive roof inspections and maintenance services tailored to your roof type.</p>
+                    <p><strong>Our residential maintenance services include:</strong></p>
+                    <ul class="check-list">
+                        <li>Full roof inspections</li>
+                        <li>Shingle and tile checks</li>
+                        <li>Flashing inspection and resealing</li>
+                        <li>Gutter cleaning and debris removal</li>
+                        <li>Leak detection</li>
+                        <li>Minor repairs</li>
+                        <li>Ventilation assessment</li>
+                    </ul>
+                    <p class="mt-20">As a dependable residential roofing company, we ensure your roof remains in excellent condition through every season.</p>
+                </div>
+                <div class="zigzag-img">
+                    <img src="assests/Residential Roof Maintenance Services.webp" alt="Residential Maintenance" class="rounded-img shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container">
+            <div class="zigzag-row reverse-layout">
+                <div class="zigzag-img">
+                    <img src="assests/Commercial Roof Maintenance Programs.webp" alt="Commercial Maintenance" class="rounded-img shadow">
+                </div>
+                <div class="zigzag-text">
+                    <h2 class="section-title-left">Commercial Roof Maintenance Programs</h2>
+                    <p>Commercial roofing systems require consistent monitoring to maintain performance and prevent business disruption. As an experienced commercial roofing contractor, Clean Roofing offers preventative maintenance plans customized to your property.</p>
+                    <p><strong>Our commercial maintenance services include:</strong></p>
+                    <ul class="check-list">
+                        <li>Flat roof inspections</li>
+                        <li>Drainage system checks</li>
+                        <li>Waterproof membrane evaluation</li>
+                        <li>Sealant inspection</li>
+                        <li>Structural assessment</li>
+                        <li>Preventative repairs</li>
+                    </ul>
+                    <p class="mt-20">As a reliable commercial roofing company, we help business owners avoid costly emergency repairs and extend the lifespan of their investment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section bg-dark text-white">
+        <div class="container text-center">
+            <h2 class="section-title text-white">Roofing Types We Maintain</h2>
+            <p class="section-subtitle text-white">We provide maintenance services for various roofing systems, including:</p>
+            
+            <div class="badges-container">
+                <span class="roof-badge">Flat Roof systems</span>
+                <span class="roof-badge">Metal Roof systems</span>
+                <span class="roof-badge">Composite Roof shingles</span>
+                <span class="roof-badge">Cement Tile Roof systems</span>
+                <span class="roof-badge">Wood Shake Roof structures</span>
+            </div>
+            <p class="mt-40">Each roofing type requires specific care techniques, and our team ensures proper maintenance based on material and structure.</p>
+        </div>
+    </section>
+
+    <section id="process" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Roof Maintenance Process</h2>
+            <p class="section-subtitle">At Clean Roofing, we follow a detailed approach to ensure your roof stays protected.</p>
+            
+            <div class="process-list">
+                <div class="process-item">
+                    <div class="proc-number">1</div>
+                    <div class="proc-content">
+                        <h4>Comprehensive Inspection</h4>
+                        <p>We examine all roofing components to identify signs of wear, damage, or potential leaks.</p>
+                    </div>
+                </div>
+                <div class="process-item">
+                    <div class="proc-number">2</div>
+                    <div class="proc-content">
+                        <h4>Preventative Repairs</h4>
+                        <p>We address minor issues immediately to prevent them from developing into major problems.</p>
+                    </div>
+                </div>
+                <div class="process-item">
+                    <div class="proc-number">3</div>
+                    <div class="proc-content">
+                        <h4>Cleaning & Debris Removal</h4>
+                        <p>We remove leaves, branches, and buildup that can cause drainage issues.</p>
+                    </div>
+                </div>
+                <div class="process-item">
+                    <div class="proc-number">4</div>
+                    <div class="proc-content">
+                        <h4>Maintenance Report</h4>
+                        <p>You receive a clear summary of your roof’s condition and recommendations for future care.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container">
+            <div class="info-box-border">
+                <h3>How Often Should You Schedule Roof Maintenance?</h3>
+                <p>For most properties in San Jose, we recommend:</p>
+                <ul class="bullet-list-center">
+                    <li>Annual roof inspections</li>
+                    <li>Bi-annual maintenance for commercial properties</li>
+                    <li>Post-storm inspections when needed</li>
+                </ul>
+                <p>Regular maintenance is far more affordable than emergency roof repairs or premature replacements.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Clean Roofing for Roof Maintenance?</h2>
+            <p class="section-subtitle">Choosing the right <a href="https://cleanroofing.com/" style="font-weight: bold; color: inherit;color: blue;">Roofing Company in San Jose, CA</a> ensures your roof receives professional care. Property owners trust Clean Roofing because we provide:</p>
+            
+            <div class="grid-3">
+                <div class="card-simple text-center">
+                    <h4>Thorough inspections</h4>
+                </div>
+                <div class="card-simple text-center">
+                    <h4>Honest recommendations</h4>
+                </div>
+                <div class="card-simple text-center">
+                    <h4>Affordable maintenance plans</h4>
+                </div>
+                <div class="card-simple text-center">
+                    <h4>Skilled roofing professionals</h4>
+                </div>
+                <div class="card-simple text-center">
+                    <h4>Long-term roofing solutions</h4>
+                </div>
+                <div class="card-simple text-center">
+                    <h4>Excellent customer service</h4>
+                </div>
+            </div>
+            
+            <p class="text-center mt-20">We focus on prevention so you can avoid major roofing expenses.</p>
+        </div>
+    </section>
+
+    <section class="map-responsive">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.6222809398364!2d-121.851086!3d37.2784459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fcbcf24791821%3A0x6470a5ce2703b5b8!2sClean%20Roofing!5e1!3m2!1sen!2s!4v1771351160174!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <footer id="contact" class="site-footer">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Schedule Your Roof Maintenance in San Jose Today</h2>
+                <p>Protect your home or business with professional Roof Maintenance in San Jose from Clean Roofing. Our team is ready to keep your roofing system strong, secure, and performing at its best.</p>
+                <div class="cta-action">
+                    <p>Contact Clean Roofing today to schedule your inspection and receive a free maintenance estimate from a trusted roofing contractor San Jose residents depend on.</p>
+                    <a href="tel:8883362115" class="btn-cta" style="display: inline-block; text-decoration: none;">Contact Us Now</a>
+                </div>
+            </div>
+
+            <div class="footer-details">
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#services">Maintenance</a></li>
+                        <li><a href="#process">Our Process</a></li>
+                        <li><a href="#why-us">Why Us</a></li>
+                        <li><a href="roof-installation.html">Roof Installation</a></li>
+                        <li><a href="roof-repair.html">Roof Repair</a></li>
+                        <li><a href="https://cleanroofing.com/contact-us/">Get Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><strong>Address:</strong> 3641 Charter Park Dr unit d, San Jose, CA 95136, United States</p>
+                        <p><strong>Phone:</strong> <a href="tel:18883362115" style="color: inherit; text-decoration: none;">+1 888-336-2115</a></p>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Business Hours</h4>
+                    <table class="hours-table">
+                        <tr><td class="day">Monday</td><td>7:30 am–6:30 pm</td></tr>
+                        <tr><td class="day">Tuesday</td><td>7:30 am–6:30 pm</td></tr>
+                        <tr><td class="day">Wednesday</td><td>7:30 am–6:30 pm</td></tr>
+                        <tr><td class="day">Thursday</td><td>7:30 am–6:30 pm</td></tr>
+                        <tr><td class="day">Friday</td><td>7:30 am–6:30 pm</td></tr>
+                        <tr><td class="day">Saturday</td><td>8 am–5 pm</td></tr>
+                        <tr><td class="day">Sunday</td><td>Closed</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="footer-copy">
+                &copy; 2026 Clean Roofing. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('mobile-menu');
+            const nav = document.querySelector('.main-nav');
+            const dropdown = document.querySelector('.dropdown');
+
+            // Toggle Main Menu on Mobile
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    nav.classList.toggle('active');
+                });
+            }
+
+            // Toggle Dropdown on Mobile Click
+            if (dropdown) {
+                dropdown.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 992) {
+                        dropdown.classList.toggle('open');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
